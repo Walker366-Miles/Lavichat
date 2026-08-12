@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Lavichat — Get Paid to Chat With Foreigners</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --radius: 14px;
+    --background:#090a0f;
+    --foreground:#f8fafc;
+    --card:#12141d;
+    --border:#222634;
+    --secondary:#0d0e15;
+    --primary:#00d2ff;
+    --primary-darks:rgba(0, 208, 255, 0.349);
+    --primary-dark:#00a3cc;
+    --primary-darkest:rgba(0, 208, 255, 0.164);
+    --primary-foreground:#ffffff;
+    --coral:#ff2a70;
+    --coral-light:rgb(247, 119, 162);
+    --coral-dark:rgba(255, 42, 113, 0.327);
+    --coral-darkest: rgba(255, 42, 113, 0.24);
+    --success:#10b981;
+    --text:#f8fafc;
+    --muted:#a9b3c2;
+    --font-display:'Plus Jakarta Sans', sans-serif;
+    --font-body:'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--background);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{width:100%;max-width:980px;margin:0 auto;padding:20px 16px;}
+  h1,h2,h3{font-family:var(--font-display);letter-spacing:-0.01em;}
+
+  /* HEADER */
+  header{
+    position:sticky;top:0;z-index:40;
+    border-bottom:1px solid var(--border);
+    background:rgba(9,10,15,0.85);
+    backdrop-filter:blur(10px);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 0;}
+  .logo{display:flex;align-items:center;gap:8px;}
+  .logo img, .logo .mark{
+    width:32px;height:32px;border-radius:50%;
+    box-shadow:0 2px 6px rgba(0,0,0,0.5);
+    outline:1px solid rgba(0,210,255,0.3);
+  }
+  .mark{
+    background:linear-gradient(135deg,var(--primary),var(--coral));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-family:var(--font-display);font-weight:800;font-size:14px;
+  }
+  .logo-text{display:flex;flex-direction:column;line-height:1;}
+  .logo-text .name{font-family:var(--font-display);font-size:14px;font-weight:800;}
+  .logo-text .name span{color:var(--coral);}
+  .logo-text .tag{font-size:9px;color:var(--muted);}
+  .nav-right{display:flex;align-items:center;gap:8px;}
+  .live-pill{
+    display:flex;align-items:center;gap:6px;
+    border:1px solid var(--border);background:#12141d;
+    padding:5px 10px;border-radius:999px;font-size:11px;
+    box-shadow:0 1px 2px rgba(0,0,0,0.3);
+  }
+  .ping-dot{position:relative;width:8px;height:8px;}
+  .ping-dot::before{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    background:var(--success);opacity:0.75;animation:ping 1.6s cubic-bezier(0,0,0.2,1) infinite;
+  }
+  .ping-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--success);}
+  @keyframes ping{75%,100%{transform:scale(2.2);opacity:0;}}
+  .live-pill .count{font-weight:700;}
+  .live-pill .lbl{color:var(--muted);}
+  .btn-cta-sm{
+    background:var(--coral);color:#fff;font-weight:700;font-size:11px;
+    padding:7px 14px;border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,0.3);
+    transition:transform .15s;
+  }
+  .btn-cta-sm:hover{transform:scale(1.04);}
+
+/* ────────────────────────────────────────────
+   SECTION: ANIMATED TICKER
+──────────────────────────────────────────── */
+.ticker-strip {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  padding: 10px 0;
+  margin: 10px 0 10px;
+}
+
+.ticker-label {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: #ef4444;
+  padding: 0 16px;
+  z-index: 2;
+  background: var(--bg-card);
+}
+
+.ticker-track {
+  display: flex;
+  gap: 36px;
+  white-space: nowrap;
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.ticker-item {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;text-align:center;padding:36px 0 44px;}
+  .hero-bg{
+    position:absolute;inset:0;z-index:-2;
+    background:linear-gradient(120deg, var(--primary), var(--coral));
+    opacity:0.12;
+  }
+  .hero-blob{
+    position:absolute;top:-120px;right:-15%;z-index:-1;
+    width:420px;height:420px;border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--coral));
+    opacity:0.18;filter:blur(70px);
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--border);background:#12141d;
+    padding:5px 12px;border-radius:999px;font-size:11px;font-weight:600;
+    color:var(--primary);box-shadow:0 1px 3px rgba(0,0,0,0.3);
+    margin-bottom:16px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--coral);animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{50%{opacity:0.4;}}
+  .hero h2{font-size:clamp(26px,5vw,38px);line-height:1.08;font-weight:800;}
+  .hero h2 .grad{
+    background:linear-gradient(90deg,var(--primary),#38bdf8,var(--coral));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lede{max-width:520px;margin:12px auto 0;color:var(--muted);font-size:15px;}
+  .hero-cta{margin-top:20px;display:flex;justify-content:center;}
+  .btn-cta{
+    position:relative;display:inline-flex;align-items:center;gap:8px;
+    background:var(--coral);color:#fff;font-weight:700;font-size:14px;
+    justify-content: center;
+    text-transform:uppercase;letter-spacing:0.03em;
+    padding:14px 28px;border-radius:999px;
+    box-shadow:0 8px 24px -8px rgba(255,42,112,0.6);
+    transition:transform .15s;
+
+  }
+  .btn-cta:hover{transform:scale(1.03);}
+  .hero-trust{
+    margin-top:16px;display:flex;flex-wrap:wrap;justify-content:center;
+    gap:16px 4px; font-size:11px;font-weight:500;color:var(--muted);
+  }
+
+  /* WHATSAPP BANNER */
+  .wa-banner{
+    display:flex;align-items:center;justify-content:space-around;gap:12px;
+    border:2px solid #25D366;border-radius:20px;
+    background:linear-gradient(90deg,#0e3a1f,#092318);
+    padding:12px 16px;color:#fff;box-shadow:0 10px 24px -12px rgba(37,211,102,0.3);
+    transition:transform .15s;margin:8px 0 0;
+  }
+  .wa-banner:hover{transform:translateY(-2px);background: #25D366;}
+  .wa-left{display:flex;align-items:center;gap:12px;}
+  .wa-icon{
+    width:40px;height:40px;border-radius:50%;background:#12141d;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+  }
+  .wa-banner .title{font-weight:700;font-size:14px;}
+  .wa-banner .sub{font-size:11px;opacity:0.9;}
+  .wa-arrow{font-size:28px;flex-shrink:0;}
+
+  /* SECTION SHELL */
+  section.block{padding:4px 0;}
+  .section-head{text-align:center;max-width:520px;margin:0 auto 28px;}
+  .section-head .eyebrow{
+    font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);
+  }
+  .section-head h2{font-size:clamp(22px,3.4vw,30px);margin-top:8px;font-weight:800;}
+  .section-head p{color:var(--muted);font-size:14px;margin-top:8px;}
+
+  /* HOW IT WORKS */
+  .work{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    background:linear-gradient(120deg, var(--primary-darkest), var(--coral-darkest)) ;
+
+  }
+
+  .container-how {
+    width: 70%;
+    justify-items: center;
+  }
+
+  .hhow {
+    font-size: 30px;
+    color: var(--primary);
+  }
+  
+  .phow{
+    padding: 20px;
+    text-align: center;
+    
+   
+  }
+  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .step-card{
+    background:linear-gradient(120deg, var(--primary-darks), var(--coral-dark)) ;border:1px solid #026efa;border-radius:var(--radius);
+    padding:20px;box-shadow:0 1px 3px rgba(0,0,0,0.3);
+  }
+  .step-icon{
+    width:40px;height:40px;border-radius:36px;
+    background:rgba(0,210,255,0.1);color:var(--primary);
+    display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;
+  }
+  .step-icon img {
+    border-radius: 36px;
+  }
+  .step-card h3{font-size:15px;font-weight:700;margin-bottom:6px;}
+  .step-card p{font-size:13px;color:var(--muted);}
+
+  /* LIVE FOREIGNERS */
+  .live-block{ background: linear-gradient(120deg, var(--primary-darkest), var(--coral-darkest));}
+
+  .live-more{text-align:center;margin-top:22px;}
+
+/* Grid of individual profile cards, sized/arranged like denichat.site */
+.foreigners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 12px;
+  margin-bottom: 35px;
+ 
+}
+
+.foreigner-card {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  background:#131212;
+  border-radius:22px;
+  border:1px solid #026efa;
+  transition:.25s;
+  box-shadow:0 3px 10px rgba(0, 0, 0, 0.05);
+  height: 100px;
+  transform: scale(0.8);
+}
+
+.foreigner-card:hover {
+  transform: translateY(-3px);
+  box-shadow:0 10px 30px rgba(0,0,0,.10);
+}
+
+.avatar {
+  position: relative;
+  width: 58px;
+  height:58px;
+  flex-shrink:0;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.foreigner-info {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.top-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom: -1px;
+}
+
+.top-row strong{
+  font-size:17px;
+  font-weight:700;
+  color: #fff;
+}
+
+.age{
+  color:#888;
+  font-size:14px;
+}
+
+.country{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#666;
+  font-size:14px;
+}
+
+.country span{
+  color:#25d366;
+  font-style:italic;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-text {
+  color: #25d366;
+  font-style: italic;
+}
+
+.status[data-state="online"] .status-text {
+  color: #25d366;
+  font-style: normal;
+}
+
+.typing-dots {
+  display: none;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.status[data-state="typing"] .typing-dots {
+  display: inline-flex;
+}
+
+.typing-dots i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #25d366;
+  animation: dot-bounce 1s infinite ease-in-out;
+}
+
+.typing-dots i:nth-child(2) { animation-delay: 0.15s; }
+.typing-dots i:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes dot-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+.buttons{
+  display:flex;
+  gap:8px;
+  margin-top:2px;
+}
+
+.start-btn{
+  background:#0f9b8e;
+  color:#fff;
+  border:none;
+  padding:6px 16px;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:13px;
+  font-weight:600;
+}
+
+
+  /* STATS */
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center;}
+  .stat-box{
+    background:linear-gradient(120deg, var(--primary-darks), var(--coral-dark));border:1px solid var(--border);border-radius:var(--radius);
+    padding:18px 10px;box-shadow:0 1px 3px rgba(0,0,0,0.3);
+  }
+  .stat-box .num{font-family:var(--font-display);font-size:clamp(18px,2.6vw,24px);font-weight:800;color:var(--primary);}
+  .stat-box .label{font-size:11px;color:var(--muted);margin-top:4px;}
+
+
+  /* TESTIMONIALS */
+  .testi-block{background:linear-gradient(120deg, var(--primary-darks), var(--coral-dark));}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr); gap:14px;}
+  .testi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px rgba(0,0,0,0.3);}
+  .stars{color:yellow;font-size:12px;margin-bottom:8px;}
+  .testi-card .quote{font-size:13px;color:var(--text);margin-bottom:14px;}
+  .testi-who{display:flex;align-items:center;gap:10px;}
+  .testi-avatar{
+    width:32px;height:32px;border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--coral));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;
+  }
+  .testi-avatar img {width:32px;height:32px;border-radius: 50%;}
+  .testi-who .name{font-size:12px;font-weight:700;}
+  .testi-who .role{font-size:10px;color:green;}
+
+  /* FAQ */
+  .faq-block{max-width:640px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-block h2{color: var(--coral-light);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;color:var(--primary);
+    padding:16px 0;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font-body);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .faq-list{margin: 10px;}
+  .faq-q .chev{transition:transform .2s;color:var(--muted);flex-shrink:0;margin-left:12px;}
+  .faq-item.open .faq-q .chev{transform:rotate(180deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-a p{font-size:13px;color:var(--muted);padding-bottom:16px;line-height:1.6;}
+
+
+  .table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  background:linear-gradient(120deg, rgba(0,210,255,0.08), rgba(255,42,112,0.08)) ;
+}
+
+/* Wrapper to limit max width and make layout flexible */
+.faq-answer {
+  width: 100%;
+  max-width: 600px; /* Adjust max width as needed */
+  margin: 0 auto;
+  text-align: center;
+  color: var(--primary); /* Assuming dark background */
+}
+
+/* Make table fluid and responsive */
+.fees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+/* Larger heading style */
+.faq-answer {
+  font-size: 1.3rem; /* Slightly enlarges the plain text heading */
+  font-weight: bold;
+}
+
+/* Table headers */
+.fees-table th {
+  padding: 12px;
+  font-size: 1.1rem;
+  border-bottom: 2px solid #444; /* Dull border for headers */
+  text-align: left;
+  color: var(--coral);
+}
+
+/* Table cells with muted/dull borders */
+.fees-table td {
+  padding: 10px 12px;
+  border: 1px solid #333333; /* Low-contrast, dull border color */
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--foreground);
+}
+
+/* Optional: Subtle row hover effect */
+.fees-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+  /* CTA */
+  .cta-box{
+    border-radius:24px;padding:40px 24px;text-align:center;
+    background:linear-gradient(120deg, rgba(0,210,255,0.08), rgba(255,42,112,0.08));
+    border:1px solid var(--border);
+  }
+  .cta-box h2{font-size:clamp(22px,3.2vw,28px);margin-bottom:10px;font-weight:800;}
+  .cta-box p{color:var(--muted);font-size:14px;max-width:420px;margin:0 auto 20px;}
+  .cta-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-ghost-sm{
+    border:1px solid var(--border);background:#25a2d3;color:var(--text);
+    font-weight:700;font-size:13px;padding:12px 22px;border-radius:999px;
+  }
+
+  .btn-ghost-sm:hover{transform:scale(1.04);}
+
+  /* FOOTER */
+ .footer-bottom {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  justify-items: center;
+}
+
+  @media (min-width:640px){
+    .footer-row{flex-direction:row;justify-content:space-between;}
+  }
+  @media (max-width:820px){
+    .steps-grid{grid-template-columns:1fr;}
+    .live-grid{grid-template-columns:repeat(3,1fr);}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .earn-grid{grid-template-columns:1fr;}
+    .testi-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:520px){
+    .live-grid{grid-template-columns:repeat(3,1fr);}
+    .cta-actions{flex-direction:column;}
+    .cta-actions a{width:100%;}
+  }
+
+/* ────────────────────────────────────────────
+   POPPING TOAST NOTIFICATION
+──────────────────────────────────────────── */
+.live-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: black;
+  border: 1px solid var(--primary);
+  border-radius: 12px;
+  padding: 10px 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  max-width: 280px;
+  transform: translateX(-120%);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+}
+
+.live-toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.live-toast-flag {
+  font-size: 1.3rem;
+}
+
+.live-toast-text {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.live-toast-text strong {
+  color: var(--white);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">
+        <span class="mark"><img src="logo.png"></span>
+        <span class="logo-text">
+          <span class="name">Lavichat<span>.Site</span></span>
+          <span class="tag">Get paid to chat</span>
+        </span>
+      </a>
+      <div class="nav-right">
+        <div class="live-pill">
+          <span class="ping-dot"></span>
+          <span class="count" id="onlineCount">3,314</span>
+          <span class="lbl">online</span>
+        </div>
+        <a href="https://mulaearn.com/register.php?ref=LAVICHAT" class="btn-cta-sm">Start Earning</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+  <!-- ══════════════════════════════════════
+         SECTION: ANIMATED LIVE ACTIVITY TICKER
+    ══════════════════════════════════════ -->
+    <section class="ticker-strip" aria-label="Live activity stream">
+      <div class="ticker-label"><span class="live-dot"></span>LIVE</div>
+      <div class="ticker-track" id="tickerTrack">
+        <!-- Javascript dynamic ticker content -->
+      </div>
+    </section>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-blob"></div>
+  <div class="container">
+    <div class="badge"><span class="dot"></span>Trusted by 60,000+ Africans</div>
+    <h2>Get Paid to Chat with <span class="grad">Foreigners Online</span></h2>
+    <p class="lede">Join thousands earning daily on Lavichat. Withdraw straight to M-Pesa, MoMo, Bank or Crypto whenever you like.</p>
+    <div class="hero-cta">
+      <a href="https://mulaearn.com/register.php?ref=LAVICHAT" class="btn-cta">Start Chat &amp; Earn →</a>
+    </div>
+    <div class="hero-trust">
+      <span>✅ Instant withdrawals</span>
+      <span>✅ 24/7 support</span>
+      <span>✅ No experience needed</span>
+    </div>
+  </div>
+</section>
+
+<div class="container" style="padding-top:4px;">
+  <a href="https://whatsapp.com/channel/0029VbDIAkQDDmFVyXN3ds15" class="wa-banner">
+    <div class="wa-left">
+      <div class="wa-icon">
+        <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+          <path fill="#25D366" d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16c2.78 0 5.387-.7 7.68-1.933l.005.004 6.13 1.633a1 1 0 0 0 1.245-1.245l-1.633-6.13A15.944 15.944 0 0 0 32 16c0-8.837-7.163-16-16-16zm7.652 22.54l-1.013 1.013a2.032 2.032 0 0 1-1.632.685 17.48 17.48 0 0 1-5.83-.986 20.56 20.56 0 0 1-5.705-3.45 17.636 17.636 0 0 1-3.415-4.5c-.9-1.556-1.525-3.175-1.85-4.83a8.1 8.1 0 0 1-.17-1.927 2.03 2.03 0 0 1 .67-1.57l.79-.79a.914.914 0 0 1 1.39.08c.495.635.948 1.3 1.355 1.99.24.415.46.84.66 1.275.16.35.13.77-.085 1.085l-.535.8a.706.706 0 0 0-.08.655 11.466 11.466 0 0 0 2.645 4.08 11.55 11.55 0 0 0 4.085 2.65.71.71 0 0 0 .655-.085l.8-.535c.315-.215.735-.245 1.085-.085.435.2.86.42 1.275.66.69.405 1.355.86 1.99 1.355a.914.914 0 0 1 .08 1.39z"></path>
+        </svg>
+      </div>
+      <div>
+        <div class="title">Join our Training Channel</div>
+        <div class="sub">Get training updates and connect with other earners</div>
+      </div>
+    </div>
+    <span class="wa-arrow">→</span>
+  </a>
+</div>
+
+<section class="work">
+  
+  <div class="container-how">
+
+    <h2 class="hhow"> How LaviChat Works</h2>
+    <p class="phow">Signing up on Lavichat is quick and free⚡. 
+      Once you're in, you're matched🤝 with people from the US, UK, Germany, Canada, 
+      and other countries who genuinely enjoy chatting and are happy to pay for good conversation. 
+      Every reply you send adds to your balance💰 — the more active you are, the more you earn. 
+      Matching is fair and automated✅, and payments are secure and reliable🔒. 
+      Active chatters in Kenya typically bring in anywhere from $300 to $800+ a week, depending on how much time they put in.
+    </p>
+  </div>
+</section>
+
+
+<section class="block" id="how"></section>
+
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Process</span>
+      <h2>Three steps to your first payout</h2>
+      <p>No CVs, no interviews — register, get matched, and start chatting today.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon"><img src="sign.png"></div>
+        <h3>Create your profile</h3>
+        <p>Sign up in under two minutes and set up the profile foreigners will see.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon"><img src="chat.jpg"></div>
+        <h3>Start chatting</h3>
+        <p>Get matched with foreigners online now and keep the conversation going.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon"><img src="withd.jpg"></div>
+        <h3>Withdraw anytime</h3>
+        <p>Cash out straight to M-Pesa,Bank, MoMo or Crypto whenever your balance clears the minimum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block live-block" id="live">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Live foreigners</span>
+      <h2>Online right now, waiting to chat</h2>
+      <p>A snapshot of foreigners currently active on Lavichat.</p>
+    </div>
+      <div class="foreigners-grid">
+                <!-- CARD -->
+        <div class="foreigner-card">
+          <div class="avatar">
+            <img src="fr3.png" alt="">
+          </div>
+          <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Sofia G.</strong><span class="age">58</span>
+            </div>
+
+            <div class="country"> Spain
+              <span class="status" data-state="online">
+               <span class="status-text">Online</span>
+                <span class="typing-dots"><i></i><i></i><i></i></span>
+               </span>
+            </div>
+
+              <div class="buttons">
+                <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+               
+              </div>
+          </div>
+        </div>
+
+        <div class="foreigner-card">
+          <div class="avatar">
+              <img src="frm1.png">
+          </div>
+
+          <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Alessandro R.</strong><span class="age">62</span>
+            </div>
+
+            <div class="country"> Italy
+              <span class="status" data-state="online">
+              <span class="status-text">Online</span>
+              <span class="typing-dots"><i></i><i></i><i></i></span>
+              </span>
+            </div>
+
+              <div class="buttons">
+                <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+                
+              </div>
+          </div>
+        </div>
+
+        <div class="foreigner-card">
+          <div class="avatar">
+            <img src="frm2.png">
+          </div>
+
+          <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Lucas S.</strong><span class="age">52</span>
+            </div>
+
+            <div class="country"> Brazil
+              <span class="status" data-state="typing">
+             <span class="status-text">Typing</span>
+             <span class="typing-dots"><i></i><i></i><i></i></span>
+             </span>
+            </div>
+
+            <div class="buttons">
+              <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="foreigner-card">
+          <div class="avatar">
+            <img src="frw1.png">
+          </div>
+
+          <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Yui S.</strong><span class="age">59</span>
+            </div>
+
+            <div class="country"> Japan
+              <span class="status" data-state="typing">
+              <span class="status-text">Typing</span>
+              <span class="typing-dots"><i></i><i></i><i></i></span>
+              </span>
+            </div>
+
+            <div class="buttons">
+              <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+              
+            </div>
+          </div>
+        </div>
+      
+        <div class="foreigner-card">
+          <div class="avatar">
+            <img src="frw2.png">
+          </div>
+
+          <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Anaya S.</strong><span class="age">55</span>
+            </div>
+
+            <div class="country"> India
+             <span class="status" data-state="typing">
+             <span class="status-text">Typing</span>
+             <span class="typing-dots"><i></i><i></i><i></i></span>
+             </span>
+            </div>
+
+            <div class="buttons">
+              <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="foreigner-card">
+          <div class="avatar">
+            <img src="frm3.png">
+          </div>
+
+          <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Min-Jun K.</strong><span class="age">64</span>
+            </div>
+
+            <div class="country"> South Korea
+              <span class="status" data-state="typing">
+              <span class="status-text">Typing</span>
+              <span class="typing-dots"><i></i><i></i><i></i></span>
+              </span>
+            </div>
+
+           <div class="buttons">
+              <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+              
+           </div>
+          </div>
+        </div>
+
+        <div class="foreigner-card">
+          <div class="avatar">
+            <img src="frw4.png">
+          </div>
+
+          <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Mia C.</strong><span class="age">45</span>
+            </div>
+
+            <div class="country"> Canada
+              <span class="status" data-state="typing">
+              <span class="status-text">Typing</span>
+              <span class="typing-dots"><i></i><i></i><i></i></span>
+              </span>
+            </div>
+
+           <div class="buttons">
+              <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+              
+           </div>
+          </div>
+        </div>
+
+      <div class="foreigner-card">
+        <div class="avatar">
+            <img src="frm4.png">
+        </div>
+
+        <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Lukas M.</strong><span class="age">50</span>
+            </div>
+
+            <div class="country"> German
+              <span class="status" data-state="typing">
+              <span class="status-text">Typing</span>
+              <span class="typing-dots"><i></i><i></i><i></i></span>
+              </span>
+            </div>
+
+           <div class="buttons">
+              <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="foreigner-card">
+        <div class="avatar">
+            <img src="frm5.png">
+        </div>
+
+        <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Jack S.</strong><span class="age">50</span>
+            </div>
+
+            <div class="country"> Australia
+              <span class="status" data-state="typing">
+              <span class="status-text">Typing</span>
+              <span class="typing-dots"><i></i><i></i><i></i></span>
+              </span>
+            </div>
+
+           <div class="buttons">
+              <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+              
+          </div>
+        </div>
+      </div>
+    
+      <div class="foreigner-card">
+        <div class="avatar">
+            <img src="frw5.png">
+        </div>
+
+        <div class="foreigner-info">
+            <div class="top-row">
+              <strong>Camille M.</strong><span class="age">50</span>
+            </div>
+
+            <div class="country"> France
+              <span class="status" data-state="typing">
+              <span class="status-text">Typing</span>
+              <span class="typing-dots"><i></i><i></i><i></i></span>
+              </span>
+            </div>
+
+           <div class="buttons">
+              <button class="start-btn" onclick="window.open('https://mulaearn.com/register.php?ref=LAVICHAT','_blank')">Chat</button>
+              
+          </div>
+        </div>
+      </div>
+              
+      </div>
+    <div class="live-more"><a href="https://mulaearn.com/register.php?ref=LAVICHAT" class="btn-ghost-sm">View all foreigners online</a></div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-box"><div class="num" id="statPaidNum">$ 10,589,000 </div><div class="label">Paid to chatters</div></div>
+      <div class="stat-box"><div class="num">54</div><div class="label">Countries represented</div></div>
+      <div class="stat-box"><div class="num">15 min</div><div class="label">Avg. withdrawal time</div></div>
+      <div class="stat-box"><div class="num">24/7</div><div class="label">Foreigners online</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block testi-block">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Real chatters</span>
+      <h2>What people are saying</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">I chat during my lunch break and it covers my transport for the week.</p>
+        <div class="testi-who">
+          <div class="testi-avatar"><img src="woman.png"></div>
+          <div><div class="name"> 🇰🇪 Faith N.</div><div class="role">withdrew Ksh.10,000 last week</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Started as a side hustle, now it's my main income.</p>
+        <div class="testi-who">
+          <div class="testi-avatar"><img src="man.png"></div>
+          <div><div class="name"> 🇨🇲 Samuel K.</div><div class="role">Borrowed XAF 38,000 last week</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Support responds fast whenever I have a withdrawal question.</p>
+        <div class="testi-who">
+          <div class="testi-avatar"><img src="man2.png"></div>
+          <div><div class="name"> 🇬🇭 Kwame W.</div><div class="role">Withdrew GHS 1,660 last week </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block faq-block" id="faq">
+  <div class="section-head">
+    <span class="eyebrow">Questions</span>
+    <h2>Frequently asked questions</h2>
+  </div>
+  <div class="faq-list" id="faqList"></div>
+</section>
+
+
+<section class="block">
+  <div class="container">
+    <div class="cta-box">
+      <span class="eyebrow">Join Lavichat</span>
+      <h2 style="margin-top:10px;">Your next conversation could be your next payout.</h2>
+      <p>Registration takes less than two minutes.</p>
+      <div class="cta-actions">
+        <a href="https://mulaearn.com/register.php?ref=LAVICHAT" class="btn-cta">Create free account</a>
+        <a href="https://t.me/LaviChatSupport" class="btn-ghost-sm">Chat with us on Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container text-center">
+     <div class="footer-bottom">
+        <p>Copyright &copy; 2026 LaviChat. All Rights Reserved.</p>
+     </div>
+  </div>
+</footer>
+
+<script>
+// Live online counter fluctuation
+    const onlineEls = [document.getElementById('onlineCount'), document.getElementById('statsOnline')];
+    let mainOnlineVal = 3314;
+    setInterval(() => {
+      mainOnlineVal += Math.floor(Math.random() * 29) - 4;
+      if (mainOnlineVal < 3000) mainOnlineVal = 3000;
+      onlineEls.forEach(el => { if (el) el.textContent = mainOnlineVal.toLocaleString(); });
+    }, 2500);
+
+// Activity Ticker Content
+    const tickerItems = [
+      '🇰🇪 Wanjiru just earned KSH 4500 chatting',
+      '🇬🇭 Akosua just joined LaviChat',
+      '🇺🇬 Namubiru earned UGX 30,200 Chatting',
+      '🇨🇲 Samuel earned XAF 70,000 Chatting',
+      '🇳🇬 Zainab cashed out ₦120,000 today',
+      '🇹🇿 Rehema Withdrew TZS 315,000',
+      '🇷🇼 Manzi just started a chat session',
+      '🇿🇦 Irakoze Joined Lavichat',
+      '🇨🇲 Chantal earned XAF 60,000 Chatting'
+    ];
+    const track = document.getElementById('tickerTrack');
+    if (track) {
+      [...tickerItems, ...tickerItems].forEach(text => {
+        const span = document.createElement('span');
+        span.className = 'ticker-item';
+        span.textContent = text;
+        track.appendChild(span);
+      });
+    }
+
+(function(){
+  const el = document.getElementById('statPaidNum');
+
+  // Parse the starting number out of the existing text (strips $, commas, +)
+  let current = parseInt(el.textContent.replace(/[^0-9]/g, ''), 10) || 0;
+  let target = current;
+
+  function format(n){
+    return '$ ' + n.toLocaleString('en-US') + '+';
+  }
+
+  // Initial count-up animation from 0 to the starting value
+  function animateTo(value, duration = 1500){
+    const start = 0;
+    const startTime = performance.now();
+    function tick(now){
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out
+      const shown = Math.floor(start + (value - start) * eased);
+      el.textContent = format(shown);
+      if (progress < 1) requestAnimationFrame(tick);
+      else current = value;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  animateTo(target);
+
+  // Periodically bump the number up to simulate live payouts
+  setInterval(() => {
+    const increment = Math.floor(Math.random() * 1200) + 200; // random KES/$ chunk
+    target += increment;
+    animateTo(target, 800);
+  }, 5000); // every 5 seconds
+})();
+
+      // Toggle each foreigner's status between Online and Typing, staggered randomly
+    function setForeignerStatus(el, state) {
+    el.dataset.state = state;
+    el.querySelector('.status-text').textContent = state === 'typing' ? 'Typing' : 'Online';
+    }
+    document.querySelectorAll('.foreigner-card .status').forEach(statusEl => {
+    setInterval(() => {
+     const next = statusEl.dataset.state === 'typing' ? 'online' : 'typing';
+     setForeignerStatus(statusEl, next);
+    }, 3000 + Math.random() * 4000);
+    });
+
+  const faqData = [
+    {q:"Do I need experience to start?", a:"No experience is required. If you can hold a friendly conversation in English, you're ready to start chatting and earning on Lavichat."},
+    {q:"How and when do I get paid?", a:"Earnings are added to your balance after each conversation. Once you hit the minimum withdrawal amount, you can cash out directly to M-Pesa."},
+    {q:"Is there a minimum age to join?", a:"You must be 18 years or older to register as a chatter on Lavichat."},
+    {q:"How do withdrawals work?", a:"Request a withdrawal from your dashboard and funds are sent to M-Pesa, usually within minutes."},
+    {q:"Is my data safe?", a:"Your profile details are only shared with the platform for matching purposes and are never sold to third parties."}
+  ];
+  const faqList = document.getElementById('faqList');
+  faqData.forEach(item=>{
+    const el = document.createElement('div');
+    el.className = 'faq-item';
+    el.innerHTML = `
+      <button class="faq-q">${item.q}<span class="chev">⌄</span></button>
+      <div class="faq-a"><p>${item.a}</p></div>
+    `;
+    faqList.appendChild(el);
+    el.querySelector('.faq-q').addEventListener('click', ()=>{
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(f=>{
+        f.classList.remove('open');
+        f.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        el.classList.add('open');
+        const a = el.querySelector('.faq-a');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+    // Bottom left popping toast activity notification
+    const toastPool = [
+      { flag: '🇰🇪', name: 'Ethan K.', text: 'just earned KSH 10,200 chatting' },
+      { flag: '🇬🇭', name: 'Kwame O.', text: 'just started chatting with foreigner' },
+      { flag: '🇺🇬', name: 'Kato M.', text: 'withdrew UGX 45,000 to MoMo' },
+      { flag: '🇳🇬', name: 'Emeka A.', text: 'earned ₦50,500 chatting' },
+      { flag: '🇹🇿', name: 'Rehema J.', text: 'just joined LaviChat' },
+      { flag: '🇷🇼', name: 'Manzi U.', text: 'Just joined Lavichat' },
+      { flag: '🇨🇲', name: 'Chantal M.', text: 'just earned XAF 20,000 chatting' },
+      { flag: '🇧🇮' , name: 'Irakoze N.', text: 'withdrew BIF 100,000 from chatting'}
+    ];
+    function showToast() {
+      const item = toastPool[Math.floor(Math.random() * toastPool.length)];
+      const toast = document.createElement('div');
+      toast.className = 'live-toast';
+      toast.innerHTML = `<span class="live-toast-flag">${item.flag}</span><span class="live-toast-text"><strong>${item.name}</strong> ${item.text}</span>`;
+      document.body.appendChild(toast);
+      requestAnimationFrame(() => toast.classList.add('show'));
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 500);
+      }, 4000);
+    }
+    setTimeout(showToast, 2500);
+    setInterval(showToast, 7500);
+
+</script>
+
+</body>
+</html>
